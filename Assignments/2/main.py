@@ -1,10 +1,13 @@
 # pylint: disable=E0401
+# This class handles the initiation of objects from the different classes 
+# And the calling of methods connected to these to demonstrate the funtionality of the code.
 
+# Importing classes
 from course import Course
 from programme import Programme
 from person import Student, Teacher
 
-# Populating the code wit teachers
+# Populating the code with teachers
 teacher1 = Teacher('Raghava Rao Mukkamala')
 teacher2 = Teacher('Lester Allan Lasrado')
 teacher3 = Teacher('John Smith')
@@ -44,3 +47,5 @@ student2.get_programme_diploma()
 student3.get_programme_diploma()
 student4.get_programme_diploma()
 student5.get_programme_diploma()
+
+student1.get_grades(course1)

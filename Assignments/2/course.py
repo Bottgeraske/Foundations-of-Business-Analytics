@@ -6,7 +6,9 @@ class Course():
         self.teacher = teacher
         self.students = []
         self.assignments = []
-        teacher.add_to_course(title)
+        # Calls the add_to_course-method of the teacher-class,
+        # to make sure the teacher course is connected with the teacher and not just the other way around
+        teacher.add_course(title)
     
     def __str__(self):
         return self.title
