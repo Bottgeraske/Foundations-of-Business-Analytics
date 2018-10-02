@@ -33,12 +33,12 @@ class Student(Person):
 
     def get_programme_diploma(self):
     # Method for printing a student diploma based on the grades obtained in the 5 assignments of every course the student is taking
-        print('\n-----DIPLOMA-----\nStudent name:', self.name)
         course_failed = 0
         all_assignments_passed = 0
+        print('\n-----DIPLOMA-----\nStudent name:', self.name)
 
         # First checking the overall number of assignments passed, and wether any course was failed (by failing 2 or more assignments)
-        for course in self.programme.courses:
+        for course in self.courses:
             assignment_passed = 0
             for i in range(len(course.assignments)):
                 if course.assignments[i][self.name] == 'Pass':
@@ -49,27 +49,27 @@ class Student(Person):
         
         # If any course is failed, the programme as a whole is failed
         if course_failed > 0:
-            print('\nProgramme: FAILED (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
+            print('\nProgramme', ' (' + str(self.programme), '): ', 'FAILED (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
         # If no course is failed, and the student has passed more at least 17 assignments, the programme is passed with distinction
         elif all_assignments_passed > 16:
-            print('\nProgramme: PASSED with DISTINCTION (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
+            print('\nProgramme', ' (' + str(self.programme), '): ', 'PASSED with DISTINCTION (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
         # If none of the above is true, the program is passed normally
         else:
-            print('\nProgramme: PASSED (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
+            print('\nProgramme', ' (' + str(self.programme), '): ', 'PASSED (', str(all_assignments_passed), ' of ', str(len(course.assignments)*len(self.programme.courses)), ' assignments passed)', sep='')
 
         print('\nCourses:')
 
         # The following loop prints the status of the number of assigments passed in every course taken
-        for course in self.programme.courses:
+        for course in self.courses:
             assignment_passed = 0
             for i in range(len(course.assignments)):
                 if course.assignments[i][self.name] == 'Pass':
                     assignment_passed += 1
             # A course is passed if 3 or more assignments are passed and failed of less than 3 are passed
             if assignment_passed >= 3:
-                print(course, ': PASSED (with ', str(assignment_passed) + ' of ' + str(len(course.assignments)) + ' assignments passed)', sep='')
+                print(course, ': PASSED (', str(assignment_passed) + ' of ' + str(len(course.assignments)) + ' assignments passed)', sep='')
             else:
-                print(course, ': FAILED (with ', str(assignment_passed) + ' of ' + str(len(course.assignments)) + ' assignments passed)', sep='')
+                print(course, ': FAILED (', str(assignment_passed) + ' of ' + str(len(course.assignments)) + ' assignments passed)', sep='')
             
 class Teacher(Person):
 # Sub-class of "person"-class for constructing objects of type student. 
@@ -81,6 +81,6 @@ class Teacher(Person):
         self.courses = []
 
     # Method for adding a course to a teacher. 
-    # This method is called directly from the courses-class, as a course-object takes a teacher object as an argument
+    # This method is called directly from the courses-class, as a course-object takes a teacher-object as an argument
     def add_course(self, course_title):
         self.courses.append(course_title)
