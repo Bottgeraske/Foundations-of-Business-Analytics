@@ -47,5 +47,3 @@ student2.get_programme_diploma()
 student3.get_programme_diploma()
 student4.get_programme_diploma()
 student5.get_programme_diploma()
-
-#testing commit
